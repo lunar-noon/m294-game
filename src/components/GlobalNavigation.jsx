@@ -7,6 +7,7 @@ export default function GlobalNavigation() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/quiz">Quiz</Link></li>
         <li><Link to="/rules">Rules</Link></li>
+        <li><Link to="/questions">Questions</Link></li>
         <li><Link to="/impressum">About Us</Link></li>
       </ul>
     </div>

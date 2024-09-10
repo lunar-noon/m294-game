@@ -1,5 +1,5 @@
 import Button from '../components/Buttons'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 export default function Quiz() {
@@ -11,6 +11,7 @@ export default function Quiz() {
   const [feedback, setFeedback] = useState("")
   const [questionAnswered, setQuestionAnswered] = useState(false)
   const [reset, setReset] = useState(0)
+  const [questions, setQuestions] = useState([])
 
 
   function selectCategory(event) {console.log(categoryIndex)
@@ -101,7 +102,15 @@ export default function Quiz() {
     setScore(0)
     setReset(0)
   }
-  
+
+  useEffect(() => {
+    console.log("Mounted");
+    fetch("http://localhost:8080/questions")
+   .then(r => r.json())
+   .then(qs => setQuestions(qs))
+  }, [])
+
+  /*
   const questions = [
     { question: "Was ist 2 * 4",
       answers: [3, 5, 8],
@@ -134,7 +143,8 @@ export default function Quiz() {
       correct_answer: 94,
       category: 1
     }*/
-   ]
+   /*
+   ]*/
 
  
 
