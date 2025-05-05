@@ -21,7 +21,11 @@ export default function QuestionForm() {
   const fetchQuestions = () => {
     fetch("http://localhost:8080/questions")
       .then(res => res.json())
-      .then(data => setQuestions(data))
+      //.then(data => setQuestions(data))
+      .then(data => {
+        const sorted = data.sort((a, b) => a.id - b.id); // Sort by id
+        setQuestions(sorted);
+      });
   }
 
   useEffect(() => {

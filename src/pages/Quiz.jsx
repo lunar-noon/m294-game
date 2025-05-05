@@ -107,7 +107,8 @@ export default function Quiz() {
     console.log("Mounted");
     fetch("http://localhost:8080/questions")
    .then(r => r.json())
-   .then(qs => setQuestions(qs))
+   //.then(qs => setQuestions(qs))
+   .then(qs => setQuestions(qs.slice(0, 3)))
   }, [])
 
   /*
