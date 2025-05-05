@@ -12,6 +12,11 @@ export default function QuestionList() {
   
 
   const deleteQuestion = (id) => {
+    if (id <= 3) {
+      alert("This question cannot be deleted.");
+      return;
+    }
+    
     fetch(`http://localhost:8080/questions/${id}`, {
       method: "DELETE"
     }).then(() => {
