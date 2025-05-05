@@ -10,12 +10,25 @@ export default function QuestionList() {
    .then(qs => setQuestions(qs))
   }, [])
   
+
+  const deleteQuestion = (id) => {
+    fetch(`http://localhost:8080/questions/${id}`, {
+      method: "DELETE"
+    }).then(() => {
+      setQuestions(prev => prev.filter(q => q.id !== id))
+    }).catch(err => {
+      console.error("Delete failed", err)
+      alert("Failed to delete question.")
+    })
+  }
   
   return (
     <div className="App">
-      <h2>Frageliste</h2>
+      <h2>Fragenliste (zum Löschen klicken)</h2>
       <ul id="questions">
-        {  questions.map(q => <li key={ q.id }>{ q.question }</li>)  }
+        {questions.map((q) => (
+          <li key={q.id} onClick={() => deleteQuestion(q.id)} style={{ cursor: 'pointer', maxWidth: '75%', margin: 'auto', overflow: 'hidden' }}>{q.question}</li>
+        ))}
       </ul>
       <QuestionForm />
     </div>
